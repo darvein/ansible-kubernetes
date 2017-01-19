@@ -1,17 +1,12 @@
 #!/usr/bin/env bats
 
 @test "Verify Docker installation" {
-    run docker --version
+    run sudo docker --version
     [ "$status" -eq 0  ]
 }
 
 @test "Verify there are docker images cached" {
     result=`docker images -q | wc -l`
-    [ "$result" -gt 0  ]
-}
-
-@test "Verify weave was replicated" {
-    result=`docker ps | grep weave-npc | wc -l`
     [ "$result" -gt 0  ]
 }
 
@@ -25,3 +20,7 @@
     [ "$result" -gt 0 ]
 }
 
+#@test "Verify weave was replicated" {
+#    result=`sudo docker ps | grep weave-npc | wc -l`
+#    [ "$result" -gt 0  ]
+#}

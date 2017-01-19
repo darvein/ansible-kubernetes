@@ -39,6 +39,8 @@ kitchen converge
 kitchen verify
 ~~~~
 
+If you take a look into `.kitchen.yml` you will find that Kitchen will run 2 centos7.2 servers: a kubernete master and a kubernete node1 demo.
+
 ### Running using ansible-playbook command line
 You can also run this playbook directly on the servers by using __ansible__ command line commands.
 

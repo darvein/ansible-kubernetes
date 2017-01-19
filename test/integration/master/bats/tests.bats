@@ -1,5 +1,10 @@
 #!/usr/bin/env bats
 
+#setup(){
+#    echo "Give sometime while kubernetes master is getting up"
+#    sleep 300
+#}
+
 @test "Verify Docker installation" {
     run docker --version
     [ "$status" -eq 0  ]
@@ -10,15 +15,10 @@
     [ "$result" -gt 0  ]
 }
 
-@test "Verify weave is running" {
-    result=`docker ps | grep weave-kube | wc -l`
-    [ "$result" -gt 0  ]
-}
-
-@test "Verify joined nodes" {
-    result=`kubectl get nodes | grep node | wc -l`
-    [ "$result" -gt 0  ]
-}
+#@test "Verify joined nodes" {
+#    result=`kubectl get nodes | grep node | wc -l`
+#    [ "$result" -gt 0  ]
+#}
 
 @test "Verify kube-controller-manager is up and running" {
     result=`pidof kube-controller-manager`
@@ -44,3 +44,9 @@
     result=`pidof kube-proxy`
     [ "$result" -gt 0  ]
 }
+
+#@test "Verify weave is running" {
+#    result=`docker ps | grep weave-kube | wc -l`
+#    [ "$result" -gt 0  ]
+#}
+
