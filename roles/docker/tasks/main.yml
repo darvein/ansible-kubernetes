@@ -1,0 +1,17 @@
+---
+# Docker
+
+- name: Docker yum repository
+  template: src=docker.repo dest=/etc/yum.repos.d/docker.repo mode=0644
+
+- name: Install Docker
+  yum: name={{ item  }} state=present enablerepo=dockerrepo
+  with_items:
+      - docker
+        #notify: start docker
+
+# TODO: For some reason handlers from handlers/main.yml
+# are not being accesible, so copy/paste-ing here.
+
+- name: start docker
+  service: name=docker state=started enabled=yes

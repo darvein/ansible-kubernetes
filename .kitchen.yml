@@ -1,0 +1,33 @@
+---
+driver:
+  name: vagrant
+  customize:
+    cableconnected1: 'on'
+
+provisioner:
+  name: ansible_playbook
+  roles_path: roles
+  ansible_inventory: kitchen-hosts
+  require_chef_for_busser: true
+
+platforms:
+  - name: centos72
+    driver:
+        box: bento/centos-7.2
+
+suites:
+  - name: master
+    provisioner:
+        name: ansible_playbook
+        playbook: master.yml
+    driver:
+        network:
+            - [ "private_network", { ip: "192.168.56.151"  } ]
+
+  - name: node1
+    provisioner:
+        name: ansible_playbook
+        playbook: node.yml
+    driver:
+        network:
+            - [ "private_network", { ip: "192.168.56.152"  } ]
